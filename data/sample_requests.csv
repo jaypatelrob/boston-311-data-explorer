@@ -1,0 +1,13 @@
+case_id,opened_at,category,neighborhood,status
+DEMO-001,2026-10-01,Street Cleaning,Dorchester,Open
+DEMO-002,2026-10-01,Trash Collection,Roxbury,Closed
+DEMO-003,2026-10-02,Pothole,Allston,Open
+DEMO-004,2026-10-02,Trash Collection,Dorchester,Closed
+DEMO-005,2026-10-03,Street Cleaning,Back Bay,Closed
+DEMO-006,2026-10-03,Pothole,Hyde Park,Open
+DEMO-007,2026-10-04,Trash Collection,South Boston,Open
+DEMO-008,2026-10-04,Street Cleaning,Jamaica Plain,Closed
+DEMO-009,2026-10-05,Street Lighting,East Boston,Open
+DEMO-010,2026-10-05,Pothole,Charlestown,Closed
+DEMO-011,2026-10-06,Trash Collection,Roslindale,Open
+DEMO-012,2026-10-06,Street Cleaning,Fenway,Closed
