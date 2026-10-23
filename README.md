@@ -79,4 +79,4 @@ An independent learning project developed for an undergraduate engineering stude
 
 ## Development assistance
 
-The initial starter code, sample data, tests, and documentation were generated with ChatGPT assistance. This repository is being used for hands-on learning and incremental development.
+The initial starter code, sample data, tests, and documentation were generated with AI assistance. This repository is being used for hands-on learning and incremental development.
