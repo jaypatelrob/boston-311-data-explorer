@@ -23,7 +23,11 @@ def load_data(source):
 @st.cache_data(ttl=86400, show_spinner="Downloading official Boston 311 data (first load may take a minute)...")
 def load_public_data():
     with urlopen(REMOTE_DATA_URL, timeout=120) as response:
-        return load_data(response)
+        df = pd.read_csv(response, usecols=COLUMNS, low_memory=False)
+    df["open_dt"] = pd.to_datetime(df["open_dt"], errors="coerce")
+    for col in ["neighborhood", "type", "case_status"]:
+        df[col] = df[col].fillna("Unknown").astype(str)
+    return df
 
 st.sidebar.header("Data source")
 uploaded = st.sidebar.file_uploader("Upload Boston 311 CSV", type=["csv"], help="Use a CSV exported from Boston's 311 open-data portal.")
