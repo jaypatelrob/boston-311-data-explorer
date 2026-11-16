@@ -21,10 +21,11 @@ def load_requests(csv_path):
 def filter_requests(requests, neighborhood=None, status=None):
     """Filter rows case-insensitively; require columns for requested filters."""
     filtered = list(requests)
+    available_columns = set(filtered[0]) if filtered else set()
     for column, value in (("neighborhood", neighborhood), ("status", status)):
         if value is None:
             continue
-        if filtered and column not in filtered[0]:
+        if filtered and column not in available_columns:
             raise ValueError(f"CSV must have a '{column}' column for --{column}.")
         filtered = [
             row for row in filtered
