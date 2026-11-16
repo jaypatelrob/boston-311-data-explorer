@@ -38,14 +38,11 @@ elif LOCAL_DATA.exists():
     source = LOCAL_DATA
     st.info("Showing the locally available 2026 Boston 311 dataset.")
 else:
-    source = None
+    source = "data/sample_311.csv"
+    st.info("Showing a sample of 20,000 Boston 311 service requests from 2026. Upload your own CSV in the sidebar to explore more data.")
 
 try:
-    if source is None:
-        df = load_public_data()
-        st.info("Showing automatically loaded City of Boston 2026 service requests. You can upload a different CSV in the sidebar.")
-    else:
-        df = load_data(source)
+    df = load_data(source)
 except (ValueError, pd.errors.ParserError, UnicodeError, OSError, TimeoutError) as exc:
     st.error("Unable to load the Boston 311 dataset. Try refreshing or uploading a CSV in the sidebar.")
     st.caption(str(exc))
