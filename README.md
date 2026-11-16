@@ -1,48 +1,53 @@
 # Boston 311 Data Explorer
 
-A beginner-friendly **Python command-line data project** that summarizes 311-style service requests by category, with optional neighborhood and status filters.
+An interactive **Streamlit dashboard** for exploring Boston 311 service requests, alongside a beginner-friendly Python command-line data project.
 
-> **Important:** The included `data/sample_requests.csv` contains **fictional practice records**, not official City of Boston requests. This is a learning project, not a City of Boston product.
+## Online dashboard
 
-## Features
-- Load CSV data using Python's standard library.
-- Count service requests by category, including missing categories.
-- Filter records by neighborhood and/or status when the input CSV contains those columns.
-- Run automated unit tests.
-- Display helpful errors for missing required columns.
+The dashboard is prepared for deployment to [Streamlit Community Cloud](https://share.streamlit.io/). A live app URL will be added after deployment.
+
+**How to use:** Download a CSV export from the [City of Boston 311 open-data portal](https://data.boston.gov/dataset/311-service-requests), open the dashboard, and upload the CSV in the sidebar. The dashboard does not automatically download current data.
+
+The large 2026 CSV is intentionally excluded from GitHub. If you have the file locally at `data/boston_311_2026.csv`, the dashboard loads it automatically unless another CSV is uploaded.
+
+### Dashboard features
+- Filter by neighborhood and case status.
+- View total, open, and closed requests.
+- Explore request types, neighborhood counts, and monthly trends.
+- Inspect up to 1,000 filtered records.
+
+The uploaded CSV must contain `case_enquiry_id`, `open_dt`, `case_status`, `type`, and `neighborhood`.
 
 ## Run locally
-Requires Python 3. No third-party packages.
+
+```bash
+python3 -m pip install -r requirements.txt
+python3 -m streamlit run dashboard.py
+```
+
+For the original command-line explorer and tests:
 
 ```bash
 python3 main.py
 python3 -m unittest discover -s tests -v
 ```
 
-To analyze a CSV with a `category` column:
+The command-line explorer expects a `category` column, and optionally `neighborhood` and `status` for filters. These column names differ from the official Boston 311 export used by the dashboard.
 
-```bash
-python3 main.py path/to/requests.csv
-```
+## Deploy to Streamlit Community Cloud
 
-To filter a CSV that **also contains** `neighborhood` and `status` columns:
+1. Sign in at [share.streamlit.io](https://share.streamlit.io/) with GitHub.
+2. Create a new app from repository `jaypatelrob/boston-311-data-explorer`.
+3. Select branch `main` and entrypoint `dashboard.py`.
+4. Deploy, then upload a CSV from the sidebar.
+5. Copy the live app URL into this README and your GitHub repository description.
 
-```bash
-python3 main.py path/to/requests.csv --neighborhood Dorchester --status Open
-```
+**Note:** The free hosting service has resource limits. Very large CSV uploads may require a smaller export or a hosted data pipeline.
 
-Column names must be exactly `category`, `neighborhood`, and `status` as applicable. Filtering is case-insensitive, with exact text matching. The bundled fictional CSV may not contain optional filter columns. If your dataset uses different column names, rename them or adapt the loader.
+## Data and attribution
 
-## Project status
-- [x] CSV category summaries
-- [x] Optional neighborhood and status filtering (proposed v0.2)
-- [x] Automated tests
-- [ ] Import and document **real** data from the [Boston 311 open-data portal](https://data.boston.gov/dataset/311-service-requests)
-- [ ] Visualizations and dashboard
-- [ ] SQLite storage
+`data/sample_requests.csv` contains **fictional practice records**, not official City of Boston requests. The dashboard only displays real Boston 311 data when the user supplies a corresponding official CSV export. This project is not affiliated with the City of Boston.
 
-## What this demonstrates
-Basic Python programming, CSV parsing, functions, dictionaries, command-line interfaces, input validation, and unit testing. It does **not** yet demonstrate a deployed application, real-world dataset analysis, or advanced software engineering.
+## AI assistance
 
-## AI assistance and attribution
-The original starter project and these proposed enhancements were generated with AI assistance. The repository is intended as a learning project; understanding, validating, and extending the code is the next step. Do not describe generated features as independently implemented until you have worked through them yourself.
+The starter project and dashboard improvements were developed with AI assistance. The project is a learning portfolio; the author should review and understand the code, run tests, and validate results before describing the implementation independently.
